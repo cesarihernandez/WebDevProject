@@ -12,7 +12,7 @@ export default class DogsDAO {
         }
         try {
             // Attempt to connect to the 'dogs' collection.
-            dogs = await conn.db(process.env.WUFPH_COLLECTION).collection('dogs');
+            dogs = await conn.db(process.env.DOGREVIEWS_COLLECTION).collection('dogs');
         } catch (e) {
             console.error(`Unable to connect to dogsDAO: ${e}`);
         }

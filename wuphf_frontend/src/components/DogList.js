@@ -47,7 +47,7 @@ const retrieveDogs = useCallback(() => {
 const find = useCallback((query, by) => {
     DogDataService.find(query, by, currentPage)
     .then(response => {
-        setDogs(response.data.movies);
+        setDogs(response.data.dogs);
     })
     .catch(e => {
         console.log(e);

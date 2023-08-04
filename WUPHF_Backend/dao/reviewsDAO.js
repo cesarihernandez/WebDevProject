@@ -11,7 +11,7 @@ export default class ReviewsDAO {
         }
 
         try {
-            reviews = await conn.db(provess.env.WUFPH_COLLECTION).collection('reviews');
+            reviews = await conn.db(process.env.DOGREVIEWS_COLLECTION).collection('reviews');
         } catch (e) {
             console.error(`Unable to connect to reviewsDAO: ${e}`);
         }

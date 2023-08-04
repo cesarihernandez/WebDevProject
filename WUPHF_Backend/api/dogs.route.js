@@ -2,6 +2,7 @@
 import express from 'express';
 import DogsController from './dogs.controller.js';
 import ReviewsController from './reviews.controller.js';
+import FavoritesController from './favorites.controller.js';
 
 // Create an Express Router object.
 const router = express.Router();

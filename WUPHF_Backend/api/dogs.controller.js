@@ -61,7 +61,7 @@ export default class DogsController {
     // NOTE: May need to be updated to accomodate multiple rating attributes.
     static async apiGetSizes(req, res, next) {
         try {
-            let sizes = await MoviesDAO.getSizes();
+            let sizes = await DogsDAO.getSizes();
             res.json(sizes);
         } catch (e) {
             console.log(`API, ${e}`);
