@@ -1,25 +1,47 @@
-import logo from './logo.svg';
+import { Routes, Route, Link } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Container from "react-bootstrap/Container";
+import { Navbar, Nav } from "react-bootstrap";
+import DogList from "./components/DogList";
+import Dog from "./components/Dog";
+//import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="App">
+      <Navbar bg="primary" expand="lg" sticky="top" variant="dark">
+        <Container className="container-fluid">
+          <Navbar.Brand href="/">
+            <img src="/images/dog-paw.png" alt="dog paw" className="pawLogo"/>
+          WUPHF WUPHF
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="ml-atuo">
+              <Nav.Link as={Link} to="/dogs">
+                Dogs
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+
+      <Routes> 
+        <Route exact path="/" element={
+          <DogList />}
+        />
+        <Route exact path="/dogs" element={
+          <DogList />}
+        />
+        <Route path="/dogs/:id" element={
+          <Dog />}
+        />
+      </Routes>
     </div>
   );
 }
 
 export default App;
+
