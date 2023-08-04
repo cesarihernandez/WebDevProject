@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import DogDataService from "../services/dogs";
 import { Link } from "react-router-dom";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/esm/Form';
+import Button from 'react-bootstrap/esm/Button';
+import Col from 'react-bootstrap/esm/Col';
+import Row from 'react-bootstrap/esm/Row';
+import Container from 'react-bootstrap/esm/Container';
+import Card from 'react-bootstrap/esm/Card';
 import "./DogList.css";
 
 const DogList = props => {

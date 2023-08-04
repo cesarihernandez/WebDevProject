@@ -1,6 +1,6 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
-import Container from "react-bootstrap/Container";
+import Container from "react-bootstrap/esm/Container";
 import { Navbar, Nav } from "react-bootstrap";
 import DogList from "./components/DogList";
 import Dog from "./components/Dog";

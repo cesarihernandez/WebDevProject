@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import DogDataService from '../services/dogs';
 import { useParams } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Image from 'react-bootstrap/Image';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import Card from 'react-bootstrap/esm/Card';
+import Container from 'react-bootstrap/esm/Container';
+import Image from 'react-bootstrap/esm/Image';
+import Col from 'react-bootstrap/esm/Col';
+import Row from 'react-bootstrap/esm/Row';
 
 const Dog = props => {
     
