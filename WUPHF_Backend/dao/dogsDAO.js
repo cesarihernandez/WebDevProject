@@ -66,13 +66,13 @@ export default class DogsDAO {
             return await dogs.aggregate([
                 {
                     $match: {
-                        _id: new Object(id),
+                        _id: new ObjectId(id),
                     }
                 },
                 {
                     $lookup: {
                         from: 'size',
-                        localFiend: '_id',
+                        localField: '_id',
                         foreignField: 'dog_id',
                         as: 'size',
                     }

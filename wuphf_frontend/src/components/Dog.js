@@ -28,6 +28,8 @@ const Dog = props => {
         getDogs(params.id)
     }, [params.id]);
 
+    console.log(dog.poster);
+
     return ( 
         <div>
             <Container>
