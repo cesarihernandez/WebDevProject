@@ -15,5 +15,7 @@ div.poster {
 }
 
 .smallPoster {
+    height: 18rem;
+    width: 18rem;
     user-select: none;
 }

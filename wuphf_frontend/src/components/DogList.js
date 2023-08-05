@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
+
 import "./DogList.css";
 
 const DogList = props => {
@@ -157,7 +158,7 @@ const retrieveNextPage = useCallback(() => {
                                 <Card className="dogsListCard">
                                     <Card.Img
                                     className="smallPoster"
-                                    src={dog.poster+"/100x180"}
+                                    src={dog.poster}
                                     onError={(e) => {
                                         e.currentTarget.onerror = null; // prevents looping
                                         e.currentTarget.src="/images/dog-placeholder.png";

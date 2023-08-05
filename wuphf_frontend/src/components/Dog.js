@@ -7,6 +7,8 @@ import Image from 'react-bootstrap/esm/Image';
 import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
 
+import "./Dog.css";
+
 const Dog = props => {
     
     let params = useParams();
@@ -38,7 +40,7 @@ const Dog = props => {
                         <div className="poster">
                             <Image
                                 className="bigPicture"
-                                src={dog.poster + "/100px250"}
+                                src={dog.poster}
                                 fluid
                                 onError={(e) => {
                                     e.currentTarget.onerror = null; // prevents looping
