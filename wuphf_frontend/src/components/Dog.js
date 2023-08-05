@@ -47,7 +47,7 @@ const Dog = props => {
                     </Col>
                     <Col>
                         <Card>
-                            <Card.Header as="h5">{dog.breed}</Card.Header>
+                            <Card.Header as="h5">{dog.dog_breed}</Card.Header>
                             <Card.Body>
                                 <Card.Text>
                                     {dog.plot}

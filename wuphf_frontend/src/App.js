@@ -19,7 +19,7 @@ function App() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="ml-atuo">
+            <Nav className="ml-auto">
               <Nav.Link as={Link} to="/dogs">
                 Dogs
               </Nav.Link>

@@ -16,8 +16,8 @@ export default class DogsController {
         let filters = {};
         if (req.query.size) {
             filters.size = req.query.size;
-        } else if (req.query.breed) {
-            filters.breed = req.query.breed;
+        } else if (req.query.dog_breed) {
+            filters.dog_breed = req.query.dog_breed;
         }
 
         // Make request to the DogsDAO object using its getDogs method.

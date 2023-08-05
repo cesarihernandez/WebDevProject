@@ -25,11 +25,11 @@ export default class DogsDAO {
         dogsPerPage = 20,
     } = {}) { // empty object as default value
 
-        // Construct query based on whether "breed" and "size" filter values exist.
+        // Construct query based on whether "dog_breed" and "size" filter values exist.
         let query;
         if (filters) {
-            if ('breed' in filters) {
-                query = { $text: { $search: filters['breed'] } }; // breed of dog.
+            if ('dog_breed' in filters) {
+                query = { $text: { $search: filters['dog_breed'] } }; // dog_breed of dog.
             } else if ('size' in filters) { // change rated to size.
                 query = { 'size': { $eq: filters['size'] } };
             } 
@@ -71,10 +71,10 @@ export default class DogsDAO {
                 },
                 {
                     $lookup: {
-                        from: 'sizes',
+                        from: 'size',
                         localFiend: '_id',
                         foreignField: 'dog_id',
-                        as: 'sizes',
+                        as: 'size',
                     }
                 }
             ]).next();

@@ -1,21 +1,20 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import DogDataService from "../services/dogs";
 import { Link } from "react-router-dom";
-import Form from 'react-bootstrap/esm/Form';
-import Button from 'react-bootstrap/esm/Button';
-import Col from 'react-bootstrap/esm/Col';
-import Row from 'react-bootstrap/esm/Row';
-import Container from 'react-bootstrap/esm/Container';
-import Card from 'react-bootstrap/esm/Card';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
 import "./DogList.css";
 
 const DogList = props => {
-    // useState to set state values
-    // State allows use to update UI
+    
     const [dogs, setDogs] = useState([]);
     const [searchBreed, setSearchBreed] = useState([]);
     const [searchSize, setSearchSize] = useState([]);
-    const [size, setSize] = useState(["All Sizes"]);
+    const [sizes, setSizes] = useState(["All Sizes"]);
     const [currentPage, setCurrentPage] = useState(0);
     const [entriesPerPage, setEntriesPerPage] = useState(0);
     const [currentSearchMode, setCurrentSearchMode] =useState("");
@@ -23,7 +22,7 @@ const DogList = props => {
 const retrieveSizes = useCallback(() => {
     DogDataService.getSizes()
     .then(response => {
-        setSize(["All Sizes"].concat(response.data))
+        setSizes(["All Sizes"].concat(response.data))
     })
     .catch(e => {
         console.log(e);
@@ -59,7 +58,7 @@ const findByBreed = useCallback(() => {
     find(searchBreed, "breed");
 }, [find, searchBreed]);
 
-const findBySizes = useCallback(() => {
+const findBySize = useCallback(() => {
     setCurrentSearchMode("findBySize");
     if (searchSize === "All Sizes") {
         retrieveDogs();
@@ -69,14 +68,14 @@ const findBySizes = useCallback(() => {
 }, [find, searchSize, retrieveDogs]);
 
 const retrieveNextPage = useCallback(() => {
-    if (currentSearchMode === "findByTitle") {
+    if (currentSearchMode === "findByBreed") {
         findByBreed();
     } else if (currentSearchMode === "findbySize") {
-        findBySizes();
+        findBySize();
     } else {
         retrieveDogs();
     }
-}, [currentSearchMode, findByBreed, findBySizes, retrieveDogs]);
+}, [currentSearchMode, findByBreed, findBySize, retrieveDogs]);
 
 //Use effect to carry out side effect functionality
     useEffect(() => {
@@ -131,7 +130,7 @@ const retrieveNextPage = useCallback(() => {
                                     as="select"
                                     onChange={onChangeSearchSize}
                                 >
-                                    { size.map((size, i) => {
+                                    { sizes.map((size, i) => {
                                         return (
                                             <option value={size}
                                             key={i}>
@@ -144,23 +143,27 @@ const retrieveNextPage = useCallback(() => {
                             <Button
                             variant="primary"
                             type="button"
-                            onClick={findBySizes}
+                            onClick={findBySize}
                             >
                                 Search
                             </Button>
                         </Col>
                     </Row>
                 </Form>
-                <Row className="movieRow">
+                <Row className="dogRow">
                     { dogs.map((dog) => {
                         return(
                             <Col key={dog._id}>
-                                <Card className="moviesListCard">
+                                <Card className="dogsListCard">
                                     <Card.Img
                                     className="smallPoster"
-                                    src={dog.poster+"/100x180"} />
+                                    src={dog.poster+"/100x180"}
+                                    onError={(e) => {
+                                        e.currentTarget.onerror = null; // prevents looping
+                                        e.currentTarget.src="/images/dog-placeholder.png";
+                                         }} />
                                     <Card.Body>
-                                        <Card.Title> {dog.Breed}</Card.Title>
+                                        <Card.Title> {dog.dog_breed}</Card.Title> 
                                         <Card.Text>
                                             Rating: {dog.size}
                                         </Card.Text>
@@ -190,3 +193,4 @@ const retrieveNextPage = useCallback(() => {
                 }
 
 export default DogList;
+//changed line 166 from dog.Breed to dog.dog_breed -> result was the names of dogs now appearing 
