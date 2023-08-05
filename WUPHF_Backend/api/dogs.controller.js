@@ -11,7 +11,7 @@ export default class DogsController {
             parseInt(req.query.dogsPerPage) : 20;
         const page = req.query.page ? parseInt(req.query.page) : 0;
 
-        // Set filters on size and breed based on what are submitted with the query. These are attributes of req.query.
+        // Set filters on size and dog_breed based on what are submitted with the query. These are attributes of req.query.
         // NOTE: This may need to be edited to filter based on ratings above or below a certain threshhold for a given attribute.
         let filters = {};
         if (req.query.size) {
