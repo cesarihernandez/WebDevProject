@@ -15,7 +15,7 @@ function App() {
         <Container className="container-fluid">
           <Navbar.Brand href="/">
             <img src="/images/dog-paw.png" alt="dog paw" className="pawLogo"/>
-          WUPHF WUPHF
+          WUPHF
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
