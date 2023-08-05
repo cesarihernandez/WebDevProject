@@ -11,11 +11,12 @@ function App() {
 
   return (
       <div className="App">
-      <Navbar bg="primary" expand="lg" sticky="top" variant="dark">
+      <Navbar bg="primary" expand="lg" sticky="bottom" variant="light">
         <Container className="container-fluid">
           <Navbar.Brand href="/">
             <img src="/images/dog-paw.png" alt="dog paw" className="pawLogo"/>
           WUPHF
+          <img src="/images/dog-paw.png" alt="dog paw" className="pawLogo"/>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">

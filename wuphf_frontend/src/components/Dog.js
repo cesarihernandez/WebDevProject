@@ -40,6 +40,7 @@ const Dog = props => {
                         <div className="poster">
                             <Image
                                 className="bigPicture"
+                                /* Remove 100x180 */
                                 src={dog.poster}
                                 fluid
                                 onError={(e) => {

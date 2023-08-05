@@ -158,14 +158,15 @@ const retrieveNextPage = useCallback(() => {
                                 <Card className="dogsListCard">
                                     <Card.Img
                                     className="smallPoster"
+                                    /* Remove 100x180 */
                                     src={dog.poster}
                                     onError={(e) => {
                                         e.currentTarget.onerror = null; // prevents looping
                                         e.currentTarget.src="/images/dog-placeholder.png";
                                          }} />
                                     <Card.Body>
-                                        <Card.Title> {dog.dog_breed}</Card.Title> 
-                                        <Card.Text>
+                                        <Card.Title className="cardTitle"> {dog.dog_breed}</Card.Title> 
+                                        <Card.Text className="cardTitle">
                                             Dog Size: {dog.size}
                                         </Card.Text>
                                         <Card.Text>

@@ -19,3 +19,8 @@ div.poster {
     width: 18rem;
     user-select: none;
 }
+
+.cardTitle {
+    font-family: 'Times New Roman', Times, serif;
+
+}
