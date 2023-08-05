@@ -165,7 +165,7 @@ const retrieveNextPage = useCallback(() => {
                                     <Card.Body>
                                         <Card.Title> {dog.dog_breed}</Card.Title> 
                                         <Card.Text>
-                                            Rating: {dog.size}
+                                            Dog Size: {dog.size}
                                         </Card.Text>
                                         <Card.Text>
                                             {dog.plot}
