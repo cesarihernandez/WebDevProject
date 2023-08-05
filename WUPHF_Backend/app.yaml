@@ -1,0 +1,5 @@
+runtime: nodejs18
+
+env_variables:
+  DOGREVIEWS_DB_URI: "mongodb+srv://atlas_db_user:pW4VurPzwnk7YBvc@cluster0.8xbu9xs.mongodb.net/dog_reviews_db?retryWrites=true&w=majority"
+  DOGREVIEWS_COLLECTION: "dog_reviews_db"
