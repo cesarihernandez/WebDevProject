@@ -7,11 +7,16 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
+import { PiBoneFill, PiBoneLight } from "react-icons/pi";
 
 import "./DogList.css";
 
-const DogList = props => {
-    
+const DogList =({
+    user,
+    favorites,
+    addFavorite,
+    deleteFavorite
+}) => {
     const [dogs, setDogs] = useState([]);
     const [searchBreed, setSearchBreed] = useState([]);
     const [selectedSize, setSelectedSize] = useState(["All Sizes"]);
@@ -31,13 +36,12 @@ const retrieveSizes = useCallback(() => {
 }, []);
 
 const retrieveDogs = useCallback(() => {
-    setCurrentSearchMode(""); //Reset our seach box and then go and grab our movies
-    DogDataService.getAll(currentPage) //talks to our backend utilizing MovieDataService file
+    setCurrentSearchMode(""); //Reset our seach box and then go and grab our dogs
+    DogDataService.getAll(currentPage) 
     .then(response => {
         setDogs(response.data.dogs);
         setCurrentPage(response.data.page);
-        setEntriesPerPage(response.data.entries_per_page); //the response is everything the client
-        //asked for which in the above case is a movie, currentpage, and the number of movies per page
+        setEntriesPerPage(response.data.entries_per_page);
     })
     .catch(e => {
         console.log(e);
@@ -109,7 +113,7 @@ const retrieveNextPage = useCallback(() => {
                         <Form.Group className="mb-3">
                             <Form.Control
                             type="text"
-                            placeholder="Search by breed"
+                            placeholder="Search By Breed"
                             value={searchBreed}
                             onChange={onChangeSearchBreed}
                             />
@@ -126,7 +130,7 @@ const retrieveNextPage = useCallback(() => {
                         <Form.Group className="mb-3">
                             <Form.Control
                                 as="select"
-                                id="sizeSelect" // Add this line
+                                id="sizeSelect"
                             >
                                 { sizes.map((size, i) => {
                                     return (
@@ -153,12 +157,21 @@ const retrieveNextPage = useCallback(() => {
                         return(
                             <Col key={dog._id}>
                                 <Card className="dogsListCard">
+                                { user &&  (
+                                        favorites.includes(dog._id) ?
+                                        <PiBoneFill className="bone boneFill" onClick={() => {
+                                            deleteFavorite(dog._id);
+                                        }}/>
+                                        :
+                                        <PiBoneLight className="bone boneEmpty" onClick={() => {
+                                            addFavorite(dog._id);
+                                        }}/>
+                                )}  
                                     <Card.Img
                                     className="smallPoster"
-                                    /* Remove 100x180 */
                                     src={dog.poster}
                                     onError={(e) => {
-                                        e.currentTarget.onerror = null; // prevents looping
+                                        e.currentTarget.onerror = null; 
                                         e.currentTarget.src="/images/dog-placeholder.png";
                                          }} />
                                     <Card.Body>
@@ -167,7 +180,7 @@ const retrieveNextPage = useCallback(() => {
                                             Dog Size: {dog.size}
                                         </Card.Text>
                                         <Card.Text>
-                                            {dog.plot}
+                                            {dog.shedding}
                                         </Card.Text>
                                         <Link to={"/dogs/"+dog._id}>
                                             View Reviews
