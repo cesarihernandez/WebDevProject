@@ -7,20 +7,14 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import { PiBoneFill, PiBoneLight } from "react-icons/pi";
 
 import "./DogList.css";
 
-const DogList =({
-    user,
-    favorites,
-    addFavorite,
-    deleteFavorite
-}) => {
+const DogList = props => {
     
     const [dogs, setDogs] = useState([]);
     const [searchBreed, setSearchBreed] = useState([]);
-    const [searchSize, setSearchSize] = useState([]);
+    const [selectedSize, setSelectedSize] = useState(["All Sizes"]);
     const [sizes, setSizes] = useState(["All Sizes"]);
     const [currentPage, setCurrentPage] = useState(0);
     const [entriesPerPage, setEntriesPerPage] = useState(0);
@@ -37,13 +31,13 @@ const retrieveSizes = useCallback(() => {
 }, []);
 
 const retrieveDogs = useCallback(() => {
-    setCurrentSearchMode(""); //Reset our seach box and then go and grab our dogs
-    DogDataService.getAll(currentPage) //talks to our backend utilizing DogDataService file
+    setCurrentSearchMode(""); //Reset our seach box and then go and grab our movies
+    DogDataService.getAll(currentPage) //talks to our backend utilizing MovieDataService file
     .then(response => {
         setDogs(response.data.dogs);
         setCurrentPage(response.data.page);
         setEntriesPerPage(response.data.entries_per_page); //the response is everything the client
-        //asked for which in the above case is a dog, currentpage, and the number of dogs per page
+        //asked for which in the above case is a movie, currentpage, and the number of movies per page
     })
     .catch(e => {
         console.log(e);
@@ -67,17 +61,19 @@ const findByBreed = useCallback(() => {
 
 const findBySize = useCallback(() => {
     setCurrentSearchMode("findBySize");
-    if (searchSize === "All Sizes") {
+    const selectedSize = document.getElementById("sizeSelect").value;
+    setSelectedSize(selectedSize);
+    if (selectedSize === "All Sizes") {
         retrieveDogs();
     } else {
-        find(searchSize, "size");
+        find(selectedSize, "size");
     }
-}, [find, searchSize, retrieveDogs]);
+}, [find, retrieveDogs]);
 
 const retrieveNextPage = useCallback(() => {
     if (currentSearchMode === "findByBreed") {
         findByBreed();
-    } else if (currentSearchMode === "findbySize") {
+    } else if (currentSearchMode === "findBySize") {
         findBySize();
     } else {
         retrieveDogs();
@@ -104,11 +100,6 @@ const retrieveNextPage = useCallback(() => {
         setSearchBreed(searchBreed);
     }
 
-    const onChangeSearchSize = e => {
-        const searchSize = e.target.value;
-        setSearchSize(searchSize);
-    }
-
     return (
         <div className="App">
             <Container className="main-container">
@@ -118,7 +109,7 @@ const retrieveNextPage = useCallback(() => {
                         <Form.Group className="mb-3">
                             <Form.Control
                             type="text"
-                            placeholder="Search By Breed"
+                            placeholder="Search by breed"
                             value={searchBreed}
                             onChange={onChangeSearchBreed}
                             />
@@ -132,28 +123,28 @@ const retrieveNextPage = useCallback(() => {
                         </Button>
                         </Col>
                         <Col>
-                            <Form.Group className="mb-3">
-                                <Form.Control
-                                    as="select"
-                                    onChange={onChangeSearchSize}
-                                >
-                                    { sizes.map((size, i) => {
-                                        return (
-                                            <option value={size}
-                                            key={i}>
-                                                {size}
-                                            </option>
-                                        )
-                                    })}
-                                </Form.Control>
-                            </Form.Group>
-                            <Button
+                        <Form.Group className="mb-3">
+                            <Form.Control
+                                as="select"
+                                id="sizeSelect" // Add this line
+                            >
+                                { sizes.map((size, i) => {
+                                    return (
+                                        <option value={size}
+                                        key={i}>
+                                            {size}
+                                        </option>
+                                    )
+                                })}
+                            </Form.Control>
+                        </Form.Group>
+                        <Button
                             variant="primary"
                             type="button"
                             onClick={findBySize}
-                            >
-                                Search
-                            </Button>
+                        >
+                            Search
+                        </Button>
                         </Col>
                     </Row>
                 </Form>
@@ -162,16 +153,6 @@ const retrieveNextPage = useCallback(() => {
                         return(
                             <Col key={dog._id}>
                                 <Card className="dogsListCard">
-                                { user &&  (
-                                        favorites.includes(dog._id) ?
-                                        <PiBoneFill className="bone boneFill" onClick={() => {
-                                            deleteFavorite(dog._id);
-                                        }}/>
-                                        :
-                                        <PiBoneLight className="bone boneEmpty" onClick={() => {
-                                            addFavorite(dog._id);
-                                        }}/>
-                                        )}   
                                     <Card.Img
                                     className="smallPoster"
                                     /* Remove 100x180 */
@@ -186,7 +167,7 @@ const retrieveNextPage = useCallback(() => {
                                             Dog Size: {dog.size}
                                         </Card.Text>
                                         <Card.Text>
-                                            {dog.shedding}
+                                            {dog.plot}
                                         </Card.Text>
                                         <Link to={"/dogs/"+dog._id}>
                                             View Reviews
