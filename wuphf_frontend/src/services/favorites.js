@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 class FavoriteDataService {
 
@@ -9,10 +9,8 @@ class FavoriteDataService {
     getAll(userId)  {
         return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/dogs/favorites/${userId}`);
     }
-    
-  }
-  
-  
+}
+
   export default new FavoriteDataService();
 
 

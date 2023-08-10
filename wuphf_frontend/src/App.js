@@ -11,6 +11,7 @@ import DogList from "./components/DogList";
 import Dog from "./components/Dog";
 import AddReview from "./components/AddReview";
 import FavoriteDataService from "./services/favorites";
+import FavoritesPage from './components/FavoritesPage';
 
 //import logo from './logo.svg';
 import './App.css';
@@ -136,9 +137,10 @@ function App() {
       <Route path="/dogs/:id/review" element={
             <AddReview user={ user } />} 
           />
-         {/* <Route path="/favorites" element={ 
-            <FavoritesPage user={user} /> }
-          /> */}
+         {<Route path="/favorites" element={ 
+            <FavoritesPage
+            user={user} /> }
+          />}
         </Routes>
       </div>
       </GoogleOAuthProvider>
