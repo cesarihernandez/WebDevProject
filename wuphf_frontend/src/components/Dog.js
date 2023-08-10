@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/esm/Row';
 import Button from 'react-bootstrap/Button';
 import moment from 'moment';
 
+
 import "./Dog.css";
 
 const Dog = ({user}) => {
@@ -125,10 +126,10 @@ const Dog = ({user}) => {
                                  <Row>
                                     <Col>
                                       <Link to={{
-                                        pathname: "/dogs/"+params.id+"/review/"
+                                        pathname: "/dogs/" +params.id+ "/review/"
                                         }}
                                         state = {{
-                                            currentReview: review
+                                            currentReview : review
                                         }} >
                                         Edit
                                         </Link>
