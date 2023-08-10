@@ -42,7 +42,7 @@ export default class DogsController {
             // Get ID from URL.
             let id = req.params.id || {};
             // Call apiGetDogByID using id to return the dog.
-            let dog = await DogsDAO.apiGetDogByID(id);
+            let dog = await DogsDAO.getDogById(id);
             // If no dog is found...
             if (!dog) {
                 res.status(404).json({ error: "Dog Not Found" });
@@ -50,7 +50,7 @@ export default class DogsController {
             }
             // Else, package dog into an object and send it back to client.
             res.json(dog);
-        } catch (e) {
+        }   catch (e) {
             console.log(`API, ${e}`);
             res.status(500).json({ error: e });
         }

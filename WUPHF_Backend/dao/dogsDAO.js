@@ -61,7 +61,7 @@ export default class DogsDAO {
     }
 
     // Finds a dog by ID.
-    static async getDogByID(id) {
+    static async getDogById(id) {
         try {
             return await dogs.aggregate([
                 {
@@ -71,10 +71,10 @@ export default class DogsDAO {
                 },
                 {
                     $lookup: {
-                        from: 'size',
+                        from: 'reviews',
                         localField: '_id',
                         foreignField: 'dog_id',
-                        as: 'size',
+                        as: 'reviews',
                     }
                 }
             ]).next();

@@ -37,13 +37,13 @@ const retrieveSizes = useCallback(() => {
 }, []);
 
 const retrieveDogs = useCallback(() => {
-    setCurrentSearchMode(""); //Reset our seach box and then go and grab our movies
-    DogDataService.getAll(currentPage) //talks to our backend utilizing MovieDataService file
+    setCurrentSearchMode(""); //Reset our seach box and then go and grab our dogs
+    DogDataService.getAll(currentPage) //talks to our backend utilizing DogDataService file
     .then(response => {
         setDogs(response.data.dogs);
         setCurrentPage(response.data.page);
         setEntriesPerPage(response.data.entries_per_page); //the response is everything the client
-        //asked for which in the above case is a movie, currentpage, and the number of movies per page
+        //asked for which in the above case is a dog, currentpage, and the number of dogs per page
     })
     .catch(e => {
         console.log(e);
@@ -118,7 +118,7 @@ const retrieveNextPage = useCallback(() => {
                         <Form.Group className="mb-3">
                             <Form.Control
                             type="text"
-                            placeholder="Search by breed"
+                            placeholder="Search By Breed"
                             value={searchBreed}
                             onChange={onChangeSearchBreed}
                             />
@@ -186,7 +186,7 @@ const retrieveNextPage = useCallback(() => {
                                             Dog Size: {dog.size}
                                         </Card.Text>
                                         <Card.Text>
-                                            {dog.plot}
+                                            {dog.shedding}
                                         </Card.Text>
                                         <Link to={"/dogs/"+dog._id}>
                                             View Reviews

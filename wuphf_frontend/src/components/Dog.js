@@ -64,13 +64,12 @@ const Dog = ({user}) => {
                             <Image
                                 className="bigPicture"
                                 /* Remove 100x180 */
-                                src={dog.poster}
-                                fluid
-                                onError={(e) => {
-                                    e.currentTarget.onerror = null; // prevents looping
-                                    e.currentTarget.src = "/images/dog-placeholder.png";
+                                src={dog.poster}                    
+                                onError={({ currentTarget }) => {
+                                    currentTarget.onerror = null; // prevents looping
+                                    currentTarget.src = "/images/dog-placeholder.png";
                                 }}
-                            />
+                        fluid    />
                         </div>
                     </Col>
                     <Col>
@@ -78,8 +77,36 @@ const Dog = ({user}) => {
                             <Card.Header as="h5">{dog.dog_breed}</Card.Header>
                             <Card.Body>
                                 <Card.Text>
-                                    {dog.plot}
+                                    Size: {dog.size}
                                 </Card.Text>
+                                <Card.Text>
+                                    Shedding: {dog.shedding}
+                                </Card.Text>
+                                <Card.Text>
+                                    Grooming: {dog.grooming}
+                                </Card.Text>
+                                <Card.Text>
+                                    Intelligence: {dog.intelligence}
+                                </Card.Text>
+                                <Card.Text>
+                                    Activity Level: {dog.activity_level}
+                                </Card.Text>
+                                <Card.Text>
+                                    Barking: {dog.barking}
+                                </Card.Text>
+                                <Card.Text>
+                                    Training: {dog.training}
+                                </Card.Text>
+                                <Card.Text>
+                                  Good For Beginner: {dog.good_for_beginner ? "Yes" : "No"}
+                                </Card.Text>
+                                <Card.Text>
+                                  Good With Kids: {dog.good_with_kids ? "Yes" : "No"}
+                                </Card.Text>
+                                <Card.Text>
+                                  Good With Other Dogs: {dog.good_with_dogs ? "Yes" : "No"}
+                                </Card.Text>
+
                                 { user && 
                                     <Link to={"/dogs/"+params.id+"/review"}>
                                         Add Review
