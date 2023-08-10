@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import DogDataService from '../services/dogs';
-import { useParams } from 'react-router-dom';
+import {Link, useParams } from 'react-router-dom';
 import Card from 'react-bootstrap/esm/Card';
 import Container from 'react-bootstrap/esm/Container';
 import Image from 'react-bootstrap/esm/Image';
 import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
+import Button from 'react-bootstrap/Button';
+import moment from 'moment';
 
 import "./Dog.css";
 
-const Dog = props => {
+const Dog = ({user}) => {
     
     let params = useParams();
 
@@ -21,16 +23,37 @@ const Dog = props => {
     });
 
     useEffect(() => {
-        const getDogs = async id => {
-            const res = await DogDataService.findById(id)
-            console.log(res.data)
-            setDog(res.data)
-
+        const getDog = id => {
+          DogDataService.get(id)
+            .then(response => {
+              setDog(response.data);
+            })
+            .catch(e => {
+              console.log(e);
+            });
         }
-        getDogs(params.id)
-    }, [params.id]);
-
-    console.log(dog.poster);
+        getDog(params.id)
+      }, [params.id]);
+      
+      const deleteReview = (reviewId, index) => {
+        let data = {
+          review_id: reviewId,
+          user_id: user.googleId
+        }
+        DogDataService.deleteReview(data)
+          .then(response => {
+            setDog((prevState) => {
+              prevState.reviews.splice(index, 1);
+              return ({
+                ...prevState
+              })
+            })
+          })
+          .catch(e => {
+            console.log(e);
+          });
+      }
+      
 
     return ( 
         <div>
@@ -57,27 +80,50 @@ const Dog = props => {
                                 <Card.Text>
                                     {dog.plot}
                                 </Card.Text>
+                                { user && 
+                                    <Link to={"/dogs/"+params.id+"/review"}>
+                                        Add Review
+                                    </Link>}
                             </Card.Body>
                         </Card>
                         <h2>Reviews</h2>
                         <br></br>
-
-                        {dog.reviews.map((review, index) => {
-                            console.log('review', review)
-                            return (
-                                <div className="d-flex" key={index}>
-                                    <div className="flex-shrink-0 reviewsText">
-                                        <h5>{review.name + " reviewed on"}</h5>
-                                        <p className="review">{review.review}</p>
-                                    </div>
+                        { dog.reviews.map((review, index) => { 
+                        return ( 
+                           <div className="d—flex" key={index}>
+                             <div className="flex—shrink-0 reviewsText">
+                                <h5>{review.name + " reviewed on "} { moment(review.date).format("Do MMMM YYYY") }</h5>
+                                 <p className="review">{review.review}</p>
+                                 { user && user.googleId === review.user_id &&
+                                 <Row>
+                                    <Col>
+                                      <Link to={{
+                                        pathname: "/dogs/"+params.id+"/review/"
+                                        }}
+                                        state = {{
+                                            currentReview: review
+                                        }} >
+                                        Edit
+                                        </Link>
+                                    </Col>
+                                    <Col>
+                                      <Button variant="link" onClick={() => {
+                                        deleteReview(review._id, index)
+                                       }}>
+                                        Delete 
+                                        </Button>
+                                      </Col>
+                                    </Row>
+                                  }
                                 </div>
-                            )
-                        })}
+                              </div> 
+                        )
+                       })}
                     </Col>
-                </Row>
+             </Row>
             </Container>
-        </div>
+            </div>
     )
 }
-
+                  
 export default Dog;

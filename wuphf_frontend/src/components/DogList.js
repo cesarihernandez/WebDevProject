@@ -7,10 +7,16 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
+import { PiBoneFill, PiBoneLight } from "react-icons/pi";
 
 import "./DogList.css";
 
-const DogList = props => {
+const DogList =({
+    user,
+    favorites,
+    addFavorite,
+    deleteFavorite
+}) => {
     
     const [dogs, setDogs] = useState([]);
     const [searchBreed, setSearchBreed] = useState([]);
@@ -156,6 +162,16 @@ const retrieveNextPage = useCallback(() => {
                         return(
                             <Col key={dog._id}>
                                 <Card className="dogsListCard">
+                                { user &&  (
+                                        favorites.includes(dog._id) ?
+                                        <PiBoneFill className="bone boneFill" onClick={() => {
+                                            deleteFavorite(dog._id);
+                                        }}/>
+                                        :
+                                        <PiBoneLight className="bone boneEmpty" onClick={() => {
+                                            addFavorite(dog._id);
+                                        }}/>
+                                        )}   
                                     <Card.Img
                                     className="smallPoster"
                                     /* Remove 100x180 */

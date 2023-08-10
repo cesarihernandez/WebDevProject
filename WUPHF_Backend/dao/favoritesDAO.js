@@ -6,7 +6,7 @@ export default class FavoritesDAO {
             return;
         }
         try {
-            favoritesCollection = await conn.db(process.env.WUFPH_COLLECTION).collection('favorites');
+            favoritesCollection = await conn.db(process.env.DOGREVIEWS_COLLECTION).collection('favorites');
         } catch (e) {
             console.error(`Unable to connect in FavoritesDAO: ${e}`);
         }

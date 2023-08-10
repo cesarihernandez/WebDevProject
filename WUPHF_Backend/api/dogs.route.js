@@ -19,13 +19,17 @@ router.route('/sizes').get(DogsController.apiGetSizes);
 // A POST request to the URL /review will call apiPostReview on the reviews controller.
 router.route('/review').post(ReviewsController.apiPostReview);
 
+router.route("/review")
 router.route("/review").post(ReviewsController.apiPostReview)
-                        .put(ReviewsController.apiUpdateReview)
-                        .delete(ReviewsController.apiDeleteReview);
+router.route("/review").put(ReviewsController.apiUpdateReview)
+router.route("/review").delete(ReviewsController.apiDeleteReview);
 
+router.route("/favorites")
 router.route("/favorites").put(FavoritesController.apiUpdateFavorites);
 
+router.route("/favorites/:userId")
 router.route("/favorites/:userId").get(FavoritesController.apiGetFavorites);
+
 
 // Export router as a module so it can be imported.
 export default router;
