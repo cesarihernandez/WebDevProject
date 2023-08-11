@@ -4,6 +4,7 @@ import DogDataService from '../services/dogs';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
+import { PiStarBold } from "react-icons/pi";
 
 import "./FavoritesPage.css";
 
@@ -49,11 +50,11 @@ const FavoritesPage = ({ user }) => {
 
   return (
     <div className="favorites-container">
-      <h1>Favorites Page</h1>
+      <h1 className="favHeading"> <PiStarBold/> Favorites Page <PiStarBold/> </h1>
       <div className="dogsList">
         {dogDetails.map((dog) => (
           <Col key={dog._id}>
-            <Card className="dogsListCard">
+            <Card className="dogsListCard"> 
               <Card.Img
                 className="smallPoster"
                 src={dog.poster}

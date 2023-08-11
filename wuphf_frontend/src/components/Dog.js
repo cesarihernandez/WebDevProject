@@ -108,21 +108,21 @@ const Dog = ({user}) => {
                                 Good With Other Dogs: {dog.good_with_dogs ? "Yes" : "No"}
                               </Card.Text>
                               {user && (
-                                <Link variant="secondary" className="link-button" to={"/dogs/"+params.id+"/review"}>
+                                <Link className="link-button" to={"/dogs/"+params.id+"/review"}>
                                   Add Review
                                 </Link>
                               )}
                             </Card.Body>
 
                         </Card>
-                        <h2>Reviews</h2>
+                        <h2 className="reviewHeading"> Reviews</h2>
                         <br></br>
                         { dog.reviews.map((review, index) => { 
                         return ( 
                            <div className="d—flex" key={index}>
                              <div className="flex—shrink-0 reviewsText">
-                                <h5>{review.name + " reviewed on "} { moment(review.date).format("Do MMMM YYYY") }</h5>
-                                 <p className="review">{review.review}</p>
+                                <h5 className="userReview">{review.name + " reviewed on "} { moment(review.date).format("Do MMMM YYYY") }</h5>
+                                 <p className="userReview">{review.review}</p>
                                  { user && user.googleId === review.user_id &&
                                  <Row>
                                     <Col>

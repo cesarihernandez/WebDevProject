@@ -101,9 +101,12 @@ function App() {
               <Nav.Link as={Link} to="/dogs">
                 Dogs
               </Nav.Link>
+              <Nav.Link href="https://www.petfinder.com/" target="_blank" rel="noopener noreferrer">
+      Adopt A Pet
+    </Nav.Link>
               <Nav.Link as={Link} to="/favorites" style={{ display: user ? 'block' : 'none' }}>
                   Favorites
-                </Nav.Link> 
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
             { user ? (

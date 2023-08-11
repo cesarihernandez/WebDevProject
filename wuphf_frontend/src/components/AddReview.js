@@ -82,7 +82,7 @@ const AddReview = ({ user }) => {
             <Container className="main-container">
                 <Form>
                     <Form.Group className="mb-3">
-                        <Form.Label>{ editing ? "Edit" : "Create" } Review</Form.Label>
+                        <Form.Label style={{ color: 'white', fontWeight: 'bold'}}>{ editing ? "Edit" : "Create" } Review</Form.Label>
                         <Form.Control
                           as="textarea"
                           type="text"
@@ -92,7 +92,7 @@ const AddReview = ({ user }) => {
                           defaultValue={ editing ? initialReviewState : "" }
                         />
                     </Form.Group>
-                    <Button variant="primary" onClick={ saveReview }>
+                    <Button className="link-button" onClick={ saveReview }>
                         Submit
                     </Button>
                 </Form>
