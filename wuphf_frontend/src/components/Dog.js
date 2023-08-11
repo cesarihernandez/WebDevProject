@@ -76,43 +76,44 @@ const Dog = ({user}) => {
                     <Col>
                         <Card>
                             <Card.Header as="h5">{dog.dog_breed}</Card.Header>
-                            <Card.Body>
-                                <Card.Text>
-                                    Size: {dog.size}
-                                </Card.Text>
-                                <Card.Text>
-                                    Shedding: {dog.shedding}
-                                </Card.Text>
-                                <Card.Text>
-                                    Grooming: {dog.grooming}
-                                </Card.Text>
-                                <Card.Text>
-                                    Intelligence: {dog.intelligence}
-                                </Card.Text>
-                                <Card.Text>
-                                    Activity Level: {dog.activity_level}
-                                </Card.Text>
-                                <Card.Text>
-                                    Barking: {dog.barking}
-                                </Card.Text>
-                                <Card.Text>
-                                    Training: {dog.training}
-                                </Card.Text>
-                                <Card.Text>
-                                  Good For Beginner: {dog.good_for_beginner ? "Yes" : "No"}
-                                </Card.Text>
-                                <Card.Text>
-                                  Good With Kids: {dog.good_with_kids ? "Yes" : "No"}
-                                </Card.Text>
-                                <Card.Text>
-                                  Good With Other Dogs: {dog.good_with_dogs ? "Yes" : "No"}
-                                </Card.Text>
-
-                                { user && 
-                                    <Link to={"/dogs/"+params.id+"/review"}>
-                                        Add Review
-                                    </Link>}
+                            <Card.Body className="card-body">
+                              <Card.Text className="card-text">
+                                Size: {dog.size}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Shedding: {dog.shedding}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Grooming: {dog.grooming}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Intelligence: {dog.intelligence}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Activity Level: {dog.activity_level}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Barking: {dog.barking}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Training: {dog.training}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Good For Beginner: {dog.good_for_beginner ? "Yes" : "No"}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Good With Kids: {dog.good_with_kids ? "Yes" : "No"}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Good With Other Dogs: {dog.good_with_dogs ? "Yes" : "No"}
+                              </Card.Text>
+                              {user && (
+                                <Link variant="secondary" className="link-button" to={"/dogs/"+params.id+"/review"}>
+                                  Add Review
+                                </Link>
+                              )}
                             </Card.Body>
+
                         </Card>
                         <h2>Reviews</h2>
                         <br></br>
@@ -125,7 +126,7 @@ const Dog = ({user}) => {
                                  { user && user.googleId === review.user_id &&
                                  <Row>
                                     <Col>
-                                      <Link to={{
+                                      <Link className="link-button" to={{
                                         pathname: "/dogs/" +params.id+ "/review/"
                                         }}
                                         state = {{
@@ -135,7 +136,7 @@ const Dog = ({user}) => {
                                         </Link>
                                     </Col>
                                     <Col>
-                                      <Button variant="link" onClick={() => {
+                                      <Button className="link-button" variant="link" onClick={() => {
                                         deleteReview(review._id, index)
                                        }}>
                                         Delete 

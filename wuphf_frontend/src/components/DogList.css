@@ -8,6 +8,7 @@
 
 .dogsListCard {
     width: 18rem;
+
 }
 
 div.poster {
@@ -22,6 +23,7 @@ div.poster {
 
 .cardTitle {
     font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
 
 }
 

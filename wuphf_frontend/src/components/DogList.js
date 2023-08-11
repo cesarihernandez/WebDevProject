@@ -119,7 +119,7 @@ const retrieveNextPage = useCallback(() => {
                             />
                         </Form.Group>
                         <Button
-                            variant="primary"
+                            variant="secondary"
                             type="button"
                             onClick={findByBreed}
                         >
@@ -143,7 +143,7 @@ const retrieveNextPage = useCallback(() => {
                             </Form.Control>
                         </Form.Group>
                         <Button
-                            variant="primary"
+                            variant="secondary"
                             type="button"
                             onClick={findBySize}
                         >
@@ -179,11 +179,8 @@ const retrieveNextPage = useCallback(() => {
                                         <Card.Text className="cardTitle">
                                             Dog Size: {dog.size}
                                         </Card.Text>
-                                        <Card.Text>
-                                            {dog.shedding}
-                                        </Card.Text>
                                         <Link to={"/dogs/"+dog._id}>
-                                            View Reviews
+                                            View Breed Traits & Reviews
                                         </Link>
                                     </Card.Body>
                                 </Card>

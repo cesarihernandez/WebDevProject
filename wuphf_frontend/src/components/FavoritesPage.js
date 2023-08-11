@@ -67,8 +67,7 @@ const FavoritesPage = ({ user }) => {
                 <Card.Text className="cardTitle">
                   Dog Size: {dog.size}
                 </Card.Text>
-                <Card.Text>{dog.shedding}</Card.Text>
-                <Link to={"/dogs/" + dog._id}>View Reviews</Link>
+                <Link to={"/dogs/" + dog._id}>View Traits & Reviews</Link>
               </Card.Body>
             </Card>
           </Col>

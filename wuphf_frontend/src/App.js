@@ -88,7 +88,7 @@ function App() {
   return (
     <GoogleOAuthProvider clientId={clientId}> 
       <div className="App">
-      <Navbar bg="primary" expand="lg" sticky="bottom" variant="light">
+      <Navbar bg="secondary" expand="lg" sticky="bottom" variant="dark">
         <Container className="container-fluid">
           <Navbar.Brand href="/">
             <img src="/images/dog-paw.png" alt="dog paw" className="pawLogo"/>
