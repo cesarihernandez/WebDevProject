@@ -28,8 +28,8 @@ export default class DogsDAO {
         // Construct query based on whether "dog'dog_breed" and "size" filter values exist.
         let query;
         if (filters) {
-            if ('dog_breed' in filters) {
-                query = { $text: { $search: filters['dog_breed'] } }; // dog'dog_breed of dog.
+            if ("dog_breed" in filters) {
+                query = { $text: { $search: filters["dog_breed"] } }; // dog'dog_breed of dog.
             } else if ('size' in filters) { // change rated to size.
                 query = { 'size': { $eq: filters['size'] } };
             } 

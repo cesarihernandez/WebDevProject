@@ -8,8 +8,8 @@ export default class DogsController {
 
         // Set paging information that will be optionally passed in along with the HTTP request.
         const dogsPerPage = req.query.dogsPerPage ?
-            parseInt(req.query.dogsPerPage) : 20;
-        const page = req.query.page ? parseInt(req.query.page) : 0;
+            parseInt(req.query.dogsPerPage, 10) : 20;
+        const page = req.query.page ? parseInt(req.query.page, 10) : 0;
 
         // Set filters on size and dog_breed based on what are submitted with the query. These are attributes of req.query.
         // NOTE: This may need to be edited to filter based on ratings above or below a certain threshhold for a given attribute.
