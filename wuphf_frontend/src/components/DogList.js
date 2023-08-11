@@ -60,7 +60,7 @@ const find = useCallback((query, by) => {
 
 const findByBreed = useCallback(() => {
     setCurrentSearchMode("findByBreed");
-    find(searchBreed, "breed");
+    find(searchBreed, "dog_breed");
 }, [find, searchBreed]);
 
 const findBySize = useCallback(() => {
@@ -100,6 +100,7 @@ const retrieveNextPage = useCallback(() => {
 
     // Other functions that are not depended on by useEffect
     const onChangeSearchBreed = e => {
+        console.log("CHANGING")
         const searchBreed = e.target.value;
         setSearchBreed(searchBreed);
     }
@@ -202,4 +203,3 @@ const retrieveNextPage = useCallback(() => {
                 }
 
 export default DogList;
-//changed line 166 from dog.Breed to dog.dog_breed -> result was the names of dogs now appearing 

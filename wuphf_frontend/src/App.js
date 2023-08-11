@@ -28,6 +28,7 @@ function App() {
       .then(response => {
         setFavorites(response.data.favorites);
       })
+      
       .catch(e => {
         console.log(e);
       });
