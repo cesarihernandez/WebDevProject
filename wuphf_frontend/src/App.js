@@ -12,7 +12,7 @@ import Dog from "./components/Dog";
 import AddReview from "./components/AddReview";
 import FavoriteDataService from "./services/favorites";
 import FavoritesPage from './components/FavoritesPage';
-
+import RandomQuote from "./components/RandomQuote";
 //import logo from './logo.svg';
 import './App.css';
 
@@ -92,9 +92,9 @@ function App() {
       <Navbar bg="secondary" expand="lg" sticky="bottom" variant="dark">
         <Container className="container-fluid">
           <Navbar.Brand href="/">
-            <img src="/images/dog-paw.png" alt="dog paw" className="pawLogo"/>
-          WUPHF
-          <img src="/images/dog-paw.png" alt="dog paw" className="pawLogo"/>
+            
+          <h2 className="largerImage"> <img src="/images/dog_land_2.png" alt="dog paw" className="pawLogo"/> WUPHF </h2>
+          
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -103,12 +103,13 @@ function App() {
                 Dogs
               </Nav.Link>
               <Nav.Link href="https://www.petfinder.com/" target="_blank" rel="noopener noreferrer">
-      Adopt A Pet
-    </Nav.Link>
+                Adopt
+              </Nav.Link>
               <Nav.Link as={Link} to="/favorites" style={{ display: user ? 'block' : 'none' }}>
                   Favorites
                 </Nav.Link>
               </Nav>
+            <RandomQuote/>
             </Navbar.Collapse>
             { user ? (
               <Logout setUser={setUser} clientId={clientId}/>
@@ -125,7 +126,9 @@ function App() {
             addFavorite={ addFavorite }
             deleteFavorite= { deleteFavorite }
             favorites= { favorites }
-            />}
+            />
+          }
+            
         />
         <Route exact path="/dogs" element={
           <DogList 

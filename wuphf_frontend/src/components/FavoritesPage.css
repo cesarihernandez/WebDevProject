@@ -24,8 +24,23 @@
   .favHeading {
     font-family: 'Arial', sans-serif; /* Change font to Arial or any other bold font */
     font-weight: bold;
-    color: yellow; 
+    color: white; 
   }
+
+  .salmBackground {
+    background-color: lightgray;
+  }
+
+  .slategreyBg {
+    background-color: slategrey;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+  }
+  
+
+  
   
   
 

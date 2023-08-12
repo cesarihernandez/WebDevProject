@@ -175,12 +175,12 @@ const retrieveNextPage = useCallback(() => {
                                         e.currentTarget.onerror = null; 
                                         e.currentTarget.src="/images/dog-placeholder.png";
                                          }} />
-                                    <Card.Body>
+                                    <Card.Body className="salmonBackground">
                                         <Card.Title className="cardTitle"> {dog.dog_breed}</Card.Title> 
                                         <Card.Text className="cardTitle">
                                             Dog Size: {dog.size}
                                         </Card.Text>
-                                        <Link to={"/dogs/"+dog._id}>
+                                        <Link to={"/dogs/"+dog._id} className="slategreyBackground">
                                             View Breed Traits & Reviews
                                         </Link>
                                     </Card.Body>

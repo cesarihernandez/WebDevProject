@@ -121,8 +121,10 @@ const Dog = ({user}) => {
                         return ( 
                            <div className="d—flex" key={index}>
                              <div className="flex—shrink-0 reviewsText">
-                                <h5 className="userReview">{review.name + " reviewed on "} { moment(review.date).format("Do MMMM YYYY") }</h5>
-                                 <p className="userReview">{review.review}</p>
+                                <h5 className="headerReview">{review.name + " reviewed on "} { moment(review.date).format("Do MMMM YYYY") }
+                                <p className="userReview">{review.review}</p>
+                                </h5>
+                                 
                                  { user && user.googleId === review.user_id &&
                                  <Row>
                                     <Col>

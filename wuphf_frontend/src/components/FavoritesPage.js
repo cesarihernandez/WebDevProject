@@ -63,12 +63,14 @@ const FavoritesPage = ({ user }) => {
                   e.currentTarget.src = "/images/dog-placeholder.png";
                 }}
               />
-              <Card.Body>
+              <Card.Body className="salmBackground">
                 <Card.Title className="cardTitle"> {dog.dog_breed}</Card.Title>
                 <Card.Text className="cardTitle">
                   Dog Size: {dog.size}
                 </Card.Text>
-                <Link to={"/dogs/" + dog._id}>View Traits & Reviews</Link>
+                <Link to={"/dogs/" + dog._id} className="slategreyBg">
+                  View Traits & Reviews
+                </Link>
               </Card.Body>
             </Card>
           </Col>

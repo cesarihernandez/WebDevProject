@@ -43,7 +43,16 @@ p.review {
     color: white;
   }
 
-  .userReview {
-    color: white;
+  .headerReview {
+    background-color: lightgoldenrodyellow;
+    color: black;
     font-weight: bold;
+    font-size: 0.95em ;
+}
+
+.userReview {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  font-style: italic;
 }
