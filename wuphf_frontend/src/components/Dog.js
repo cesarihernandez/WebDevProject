@@ -8,6 +8,8 @@ import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
 import Button from 'react-bootstrap/Button';
 import moment from 'moment';
+import Carousel from 'react-bootstrap/Carousel'; // Import the Carousel component
+
 
 
 import "./Dog.css";
@@ -62,16 +64,17 @@ const Dog = ({user}) => {
                 <Row>
                     <Col>
                         <div className="poster">
-                            <Image
-                                className="bigPicture"
-                                /* Remove 100x180 */
+                            <Image 
                                 src={dog.poster}                    
                                 onError={({ currentTarget }) => {
                                     currentTarget.onerror = null; // prevents looping
                                     currentTarget.src = "/images/dog-placeholder.png";
                                 }}
-                        fluid    />
+                                fluid 
+                                style={{ width: '500px', height: '500px' }} 
+                            />
                         </div>
+                       
                     </Col>
                     <Col>
                         <Card>

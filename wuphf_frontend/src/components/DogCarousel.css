@@ -1,0 +1,20 @@
+.carousel-container {
+    position: absolute;
+    bottom: 20px; /* Adjust the distance from the bottom */
+    left: 20px; /* Adjust the distance from the left */
+    width: 200px; /* Adjust the width of the carousel */
+  }
+  
+  .carousel-poster {
+    width: 100%; /* Make sure the poster fills the carousel */
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.7); /* Add a semi-transparent background */
+    padding: 8px;
+    border-radius: 8px;
+    color: white;
+  }
+  
