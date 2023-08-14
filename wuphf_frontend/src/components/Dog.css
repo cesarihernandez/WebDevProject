@@ -57,3 +57,7 @@ p.review {
   font-style: italic;
 }
 
+.dogImage {
+  width: 200px;
+  height: 200px;
+}

@@ -13,6 +13,8 @@ import AddReview from "./components/AddReview";
 import FavoriteDataService from "./services/favorites";
 import FavoritesPage from './components/FavoritesPage';
 import RandomQuote from "./components/RandomQuote";
+import Carousel from "./components/Carousel";
+
 //import logo from './logo.svg';
 import './App.css';
 
@@ -93,7 +95,7 @@ function App() {
         <Container className="container-fluid">
           <Navbar.Brand href="/">
             
-          <h2 className="largerImage"> <img src="/images/dog_land_2.png" alt="dog paw" className="pawLogo"/> WUPHF </h2>
+          <h2 className="largerImage"> <img src="/images/dog_land_2.png" alt="dog face" className="pawLogo"/> WUPHF </h2>
           
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -118,6 +120,10 @@ function App() {
             )}
           </Container>
         </Navbar>
+        <Container className="mt-3 mx-auto"> {/* Use mx-auto to center horizontally */}
+        <Carousel />
+        </Container>
+
 
       <Routes> 
         <Route exact path="/" element={

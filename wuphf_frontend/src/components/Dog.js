@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/esm/Row';
 import Button from 'react-bootstrap/Button';
 import moment from 'moment';
 import Carousel from 'react-bootstrap/Carousel'; // Import the Carousel component
+import DogCarousel from './DogCarousel';
 
 
 
@@ -151,10 +152,13 @@ const Dog = ({user}) => {
                                   }
                                 </div>
                               </div> 
+                              
                         )
                        })}
                     </Col>
              </Row>
+             <div>
+    </div>
             </Container>
             </div>
     )

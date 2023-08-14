@@ -2,6 +2,7 @@ import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import Image from 'react-bootstrap/Image';
 import { Link } from 'react-router-dom';
+import DogDataService from '../services/dogs';
 
 import "./DogCarousel.css";
 
