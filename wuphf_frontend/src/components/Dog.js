@@ -8,8 +8,8 @@ import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
 import Button from 'react-bootstrap/Button';
 import moment from 'moment';
-import Carousel from 'react-bootstrap/Carousel'; // Import the Carousel component
-import DogCarousel from './DogCarousel';
+import Carousel from "./Carousel";
+
 
 
 
@@ -62,6 +62,7 @@ const Dog = ({user}) => {
     return ( 
         <div>
             <Container>
+            
                 <Row>
                     <Col>
                         <div className="poster">
@@ -159,7 +160,12 @@ const Dog = ({user}) => {
              </Row>
              <div>
     </div>
+    <Container> {/* Use mx-auto to center horizontally */}
+                <h2 className="reviewHeading">Get An Idea Of Dog Sizes!</h2>  
+        <Carousel />
+        </Container>
             </Container>
+            
             </div>
     )
 }

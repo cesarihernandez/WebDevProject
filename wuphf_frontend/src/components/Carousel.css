@@ -1,18 +1,18 @@
 .carousel-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* You might want to adjust this to your layout needs */
+    justify-content: left;
+    align-items: left;
+    height: 200vh; /* You might want to adjust this to your layout needs */
     background-color: white; /* Just for visualization purposes */
 }
 
 .carousel {
-    width: 40%;
-    height: 500px;
+    width: 50%;
+    height: 600px;
     background-color: white;
     display: flex; /* Add this */
-    justify-content: center; /* Add this */
-    align-items: center; /* Add this */
+    justify-content: left; /* Add this */
+    align-items: left; /* Add this */
 }
 
 .carouselInner {

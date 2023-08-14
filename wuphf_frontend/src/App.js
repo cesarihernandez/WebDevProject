@@ -13,7 +13,7 @@ import AddReview from "./components/AddReview";
 import FavoriteDataService from "./services/favorites";
 import FavoritesPage from './components/FavoritesPage';
 import RandomQuote from "./components/RandomQuote";
-import Carousel from "./components/Carousel";
+
 
 //import logo from './logo.svg';
 import './App.css';
@@ -120,9 +120,7 @@ function App() {
             )}
           </Container>
         </Navbar>
-        <Container className="mt-3 mx-auto"> {/* Use mx-auto to center horizontally */}
-        <Carousel />
-        </Container>
+        
 
 
       <Routes> 
