@@ -19,7 +19,7 @@ const DogList =({
 }) => {
     const [dogs, setDogs] = useState([]);
     const [searchBreed, setSearchBreed] = useState([]);
-    const [selectedSize, setSelectedSize] = useState(["All Sizes"]);
+    const [searchSize, setSearchSize] = useState([""]);
     const [sizes, setSizes] = useState(["All Sizes"]);
     const [currentPage, setCurrentPage] = useState(0);
     const [entriesPerPage, setEntriesPerPage] = useState(0);
@@ -35,14 +35,9 @@ const retrieveSizes = useCallback(() => {
     });
 }, []);
 
- const loadAllDogs = () => {
-    setCurrentSearchMode(""); // Reset our search mode
-    setCurrentPage(0); // Reset current page
-    retrieveDogs(); // Fetch all dogs
-};
 
 const retrieveDogs = useCallback(() => {
-    setCurrentSearchMode(""); //Reset our seach box and then go and grab our dogs
+    setCurrentSearchMode(""); //Reset our search box and then go and grab our dogs
     DogDataService.getAll(currentPage) 
     .then(response => {
         setDogs(response.data.dogs);
@@ -71,14 +66,12 @@ const findByBreed = useCallback(() => {
 
 const findBySize = useCallback(() => {
     setCurrentSearchMode("findBySize");
-    const selectedSize = document.getElementById("sizeSelect").value;
-    setSelectedSize(selectedSize);
-    if (selectedSize === "All Sizes") {
+    if (searchSize === "All Sizes") {
         retrieveDogs();
     } else {
-        find(selectedSize, "size");
+        find(searchSize, "size");
     }
-}, [find, retrieveDogs]);
+}, [find, searchSize, retrieveDogs]);
 
 const retrieveNextPage = useCallback(() => {
     if (currentSearchMode === "findByBreed") {
@@ -100,10 +93,8 @@ const retrieveNextPage = useCallback(() => {
     }, [currentSearchMode]);
 
     useEffect(() => {
-        if (currentSearchMode === "") {
             retrieveNextPage();
-        }
-    }, [currentSearchMode, currentPage, retrieveNextPage]);
+    }, [currentPage, retrieveNextPage]);
 
     // Other functions that are not depended on by useEffect
     const onChangeSearchBreed = e => {
@@ -111,10 +102,9 @@ const retrieveNextPage = useCallback(() => {
         setSearchBreed(searchBreed);
     }
 
-    const handleSearchByBreed = () => {
-        setCurrentSearchMode("findByBreed");
-        setCurrentPage(0); // Reset current page when searching
-        findByBreed();
+    const onChangeSearchSize = e => {
+        const searchSize = e.target.value; 
+        setSearchSize(searchSize);
     }
 
     return (
@@ -134,7 +124,7 @@ const retrieveNextPage = useCallback(() => {
                         <Button
                             variant="secondary"
                             type="button"
-                            onClick={handleSearchByBreed}
+                            onClick={findByBreed}
                         >
                             Search
                         </Button>
@@ -143,7 +133,7 @@ const retrieveNextPage = useCallback(() => {
                         <Form.Group className="mb-3">
                             <Form.Control
                                 as="select"
-                                id="sizeSelect"
+                                onChange={onChangeSearchSize}
                             >
                                 { sizes.map((size, i) => {
                                     return (
