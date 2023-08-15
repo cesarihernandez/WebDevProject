@@ -1,6 +1,9 @@
 let favoritesCollection;
 
+// Handles favorites operation in the database
 export default class FavoritesDAO {
+
+    // Connect to the database
     static async injectDB(conn) {
         if (favoritesCollection) {
             return;
@@ -12,6 +15,7 @@ export default class FavoritesDAO {
         }
     }
 
+    // Update favorites
     static async updateFavorites(userId, favorites) {
         try {
             const updateResponse = await favoritesCollection.updateOne(
@@ -26,6 +30,7 @@ export default class FavoritesDAO {
         }
     }
 
+    // Get favorites
     static async getFavorites(id) {
         let cursor;
         try {

@@ -16,7 +16,8 @@ function Logout({setUser}) {
                 variant='light'
                 onClick={onClick}
                 >Logout</Button>
-            </div>
-            );
-    }
-            export default Logout;  
+        </div>
+    );
+}
+    
+export default Logout;  

@@ -27,6 +27,7 @@ const quotes = [
 const RandomQuote = () => {
   const [randomQuote, setRandomQuote] = useState('');
 
+  // Randomly select a quote when main page loads
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * quotes.length);
     setRandomQuote(quotes[randomIndex]);

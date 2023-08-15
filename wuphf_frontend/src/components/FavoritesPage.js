@@ -12,39 +12,42 @@ const FavoritesPage = ({ user }) => {
   const [favorites, setFavorites] = useState([]);
   const [dogDetails, setDogDetails] = useState([]);
 
+  // get user's favorite dog IDs when the user prop changes
   useEffect(() => {
-    const fetchFavorites = async () => {
+    const getFavorites = async () => {
       if (user) {
         try {
           const userId = user.googleId;
           const response = await FavoriteDataService.getAll(userId);
           console.log('Full response:', response);
-          console.log('Fetched favorites:', response.data);
+          console.log('geted favorites:', response.data);
           setFavorites(response.data.favorites);
         } catch (error) {
-          console.error('Error fetching favorites:', error);
+          console.error('Error geting favorites:', error);
         }
       }
     };
-    fetchFavorites();
+    getFavorites();
   }, [user]);
 
+  // Get dog details for the user's favorite dogs
   useEffect(() => {
-    const fetchDogDetails = async () => {
-      const detailedDogDetails = await Promise.all(favorites.map(async (dogId) => {
+    const getDogDetails = async () => {
+      const dogDetails = await Promise.all(favorites.map(async (dogId) => {
         try {
           const response = await DogDataService.get(dogId);
           return response.data;
         } catch (error) {
-          console.error('Error fetching dog details:', error);
+          console.error('Error getting dog details:', error);
           return null;
         }
       }));
-      setDogDetails(detailedDogDetails.filter(dog => dog !== null));
+      // Filter out null values from the dog details
+      setDogDetails(dogDetails.filter(dog => dog !== null));
     };
     
     if (favorites.length > 0) {
-      fetchDogDetails();
+      getDogDetails();
     }
   }, [favorites]);
 

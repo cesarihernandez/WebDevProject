@@ -1,7 +1,9 @@
 import ReviewsDAO from "../dao/reviewsDAO.js";
 
+// Reviews controller handles API requests
 export default class ReviewsController {
 
+    // Post a new review
     static async apiPostReview(req, res, next) {
         try {
             const dogId = req.body.dog_id;
@@ -35,11 +37,11 @@ export default class ReviewsController {
         }
     }
 
+    // Update a review
     static async apiUpdateReview(req, res, next) {
         try {
             const reviewId = req.body.review_id;
             const review = req.body.review;
-
             const date = new Date();
 
             const reviewResponse = await ReviewsDAO.updateReview(
@@ -64,6 +66,7 @@ export default class ReviewsController {
         }
     }
 
+    // Delete a review
     static async apiDeleteReview(req, res, next) {
         try {
             const reviewId = req.body.review_id;

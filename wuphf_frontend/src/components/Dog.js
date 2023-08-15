@@ -10,15 +10,14 @@ import Button from 'react-bootstrap/Button';
 import moment from 'moment';
 import Carousel from "./Carousel";
 
-
-
-
 import "./Dog.css";
 
 const Dog = ({user}) => {
     
+    // Retrieve paramaters from URL
     let params = useParams();
 
+    // State to hold dog information and reviews
     const [dog, setDog] = useState({
         id: null,
         breed: "",
@@ -26,6 +25,7 @@ const Dog = ({user}) => {
         reviews: []
     });
 
+    // Retrieve dog data based on the provided parameter ID
     useEffect(() => {
         const getDog = id => {
           DogDataService.get(id)
@@ -39,6 +39,7 @@ const Dog = ({user}) => {
         getDog(params.id)
       }, [params.id]);
       
+      // Delete a review based on its ID and index
       const deleteReview = (reviewId, index) => {
         let data = {
           review_id: reviewId,
@@ -58,11 +59,9 @@ const Dog = ({user}) => {
           });
       }
       
-
     return ( 
         <div>
             <Container>
-            
                 <Row>
                     <Col>
                         <div className="poster">
@@ -79,8 +78,7 @@ const Dog = ({user}) => {
                         <Container> {/* Use mx-auto to center horizontally */}
                 <h2 className="reviewHeading">Dog Sizes</h2>  
         <Carousel />
-        </Container>
-                       
+        </Container>     
                     </Col>
                     <Col>
                         <Card>
@@ -122,9 +120,7 @@ const Dog = ({user}) => {
                                 </Link>
                               )}
                             </Card.Body>
-
                         </Card>
-                        
                         <h2 className="reviewHeading"> Reviews</h2>
                         <br></br>
                         { dog.reviews.map((review, index) => { 
@@ -134,7 +130,6 @@ const Dog = ({user}) => {
                                 <h5 className="headerReview">{review.name + " reviewed on "} { moment(review.date).format("Do MMMM YYYY") }
                                 <p className="userReview">{review.review}</p>
                                 </h5>
-                                 
                                  { user && user.googleId === review.user_id &&
                                  <Row>
                                     <Col>
@@ -157,19 +152,14 @@ const Dog = ({user}) => {
                                     </Row>
                                   }
                                 </div>
-                              </div> 
-                              
+                              </div>   
                         )
                        })}
                     </Col>
-             </Row>
-             <div>
-    </div>
-    
+                </Row>
             </Container>
-            
-            </div>
-    )
+          </div>
+    );
 }
                   
 export default Dog;

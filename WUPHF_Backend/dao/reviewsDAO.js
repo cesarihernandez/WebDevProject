@@ -3,8 +3,10 @@ const ObjectId = mongodb.ObjectId;
 
 let reviews;
 
+// Handles database operations for reviews
 export default class ReviewsDAO {
     
+    // Connect to the database.
     static async injectDB(conn) {
         if (reviews) {
             return;
@@ -17,6 +19,7 @@ export default class ReviewsDAO {
         }
     }
 
+    // Add a review
     static async addReview(dogId, user, review, date) {
         try {
             const reviewDoc = {
@@ -33,6 +36,7 @@ export default class ReviewsDAO {
         }
     }
 
+    // Update a review
     static async updateReview(reviewId, userId, review, date) {
         try {
             const updateResponse = await reviews.updateOne(
@@ -46,6 +50,7 @@ export default class ReviewsDAO {
         }
     }
 
+    // Delete a review
     static async deleteReview(reviewId, userId) {
         try {
             const deleteResponse = await reviews.deleteOne({

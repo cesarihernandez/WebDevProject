@@ -4,7 +4,6 @@ import { Routes, Route, Link } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/esm/Container";
 import { Navbar, Nav } from "react-bootstrap";
-
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import DogList from "./components/DogList";
@@ -14,8 +13,6 @@ import FavoriteDataService from "./services/favorites";
 import FavoritesPage from './components/FavoritesPage';
 import RandomQuote from "./components/RandomQuote";
 
-
-//import logo from './logo.svg';
 import './App.css';
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
@@ -25,6 +22,7 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [doSaveFaves, setDoSaveFaves] = useState(false);
 
+  // Get user's favorites
   const retrieveFavorites = useCallback(() => {
     FavoriteDataService.getAll(user.googleId)
       .then(response => {
@@ -36,6 +34,7 @@ function App() {
       });
   }, [user]);
 
+  // Save user's favorites
   const saveFavorites = useCallback(() => {
     if (doSaveFaves) {
     var data = {
@@ -49,6 +48,7 @@ function App() {
     }
   }, [favorites, user, doSaveFaves]);
 
+  // Save favorites when necessary
   useEffect(() => {
     if (user && doSaveFaves) {
       saveFavorites();
@@ -56,23 +56,26 @@ function App() {
     }
   }, [user, favorites, saveFavorites, doSaveFaves]);
 
+  // Retrieve favorites when user logs in
   useEffect(() => {
     if (user) {
       retrieveFavorites();
     }
   }, [user, retrieveFavorites]);
  
-
+ // Add a favorite dog to the user's favorite's list
   const addFavorite = (dogId) => {
     setDoSaveFaves(true);
     setFavorites([...favorites, dogId])
   }
 
+  // Delete a favorite dog from the user's favorite's list
   const deleteFavorite = (dogId) => {
     setDoSaveFaves(true);
     setFavorites(favorites.filter(f => f !== dogId));
   }
 
+  // Check that a user is currenly logged in
   useEffect(() => {
     let loginData = JSON.parse(localStorage.getItem("login"));
       if (loginData) { 
@@ -121,8 +124,6 @@ function App() {
           </Container>
         </Navbar>
         
-
-
       <Routes> 
         <Route exact path="/" element={
           <DogList 
@@ -132,7 +133,6 @@ function App() {
             favorites= { favorites }
             />
           }
-            
         />
         <Route exact path="/dogs" element={
           <DogList 
@@ -158,6 +158,6 @@ function App() {
     );
   }
 
-  export default App;
+export default App;
 
 
