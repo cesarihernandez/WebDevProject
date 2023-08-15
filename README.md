@@ -37,3 +37,13 @@ Ryon: ![Ryon worked on size filtering](ryon_iter2.png)
 Edgar: ![Edgar worked on displaying dog traits & create/delete review](ed_iter2.png)
 
 Cesar: ![Cesar worked on edit review functionality](cesar_iter2.png)
+
+## Iteration 3
+
+Since iteration 2 and this being our final iteration we have achieved full functionality for iteration 3. This includes having our search by breed functionality working. This required some refactoring and making sure search indexes were set up on Mongo Atlas DB instance. We wanted to add more functionality so we created an image carousel component to allow the user to see general dog sizing with a four different pictures displaying weight ranges when clicking on a breed at landing page. We also wanted to make some stylistic changes to change font size/type for certain text, landing background and we worked on positioning certain components for a better overall user experience.
+
+Ryon: ![Ryon worked on breed search functionality and styling](ryon_iter3.png)
+
+Edgar: ![Edgar worked on dog size carousel and styling](ed_iter3.png)
+
+Cesar: ![Cesar worked on styling and backend database refactoring](cesar_iter3.png)
