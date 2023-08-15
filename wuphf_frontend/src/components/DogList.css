@@ -8,6 +8,7 @@
 
 .dogsListCard {
     width: 18rem;
+
 }
 
 div.poster {
@@ -22,6 +23,7 @@ div.poster {
 
 .cardTitle {
     font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
 
 }
 
@@ -42,3 +44,16 @@ div.poster {
 .boneEmpty {
     fill: white;
 }
+
+.salmonBackground {
+    background-color: lightgray;
+  }
+
+  .slategreyBackground {
+    background-color: slategrey;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+  }
+  

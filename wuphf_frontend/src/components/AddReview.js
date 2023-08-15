@@ -10,13 +10,15 @@ const AddReview = ({ user }) => {
     const params = useParams();
     const location = useLocation();
 
-     let editing = false;
-     let initialReviewState = ""; 
-    // initialReviewState will have a different value
+    let editing = location.currentReview ? true : false;
+    let initialReviewState = ""; 
+
+    //initialReviewState will have a different value
     if (location.state && location.state.currentReview)  {
         editing = true;
         initialReviewState = location.state.currentReview.review;
     }
+
 
     const [review, setReview] = useState(initialReviewState); 
 
@@ -33,7 +35,7 @@ const AddReview = ({ user }) => {
         dog_id: params.id // get dog id from url 
     } 
 
-    if (editing) {
+    /*if (editing) {
           data.review_id = location.state.currentReview._id
       DogDataService.updateReview(data)
         .then(response => {
@@ -51,23 +53,46 @@ const AddReview = ({ user }) => {
                 console.log(e);
              });
             }
+        }*/
+        if (editing) {
+            // TODO: Handle case where an exisiting 
+            // review is being updated
+            const editData = {
+                review_id: location.state.currentReview._id,
+                review: review,
+                user_id: user.googleId
+            }
+            DogDataService.updateReview(editData)
+            .then(response => {
+                navigate("/dogs/"+params.id);
+            })
+
+        } else {
+            DogDataService.createReview(data)
+            .then(response => {
+                navigate("/dogs/"+params.id)
+            })
+            .catch(e => {
+                console.log(e);
+            });
         }
+    }
         
         return (
             <Container className="main-container">
                 <Form>
                     <Form.Group className="mb-3">
-                        <Form.Label>{ editing ? "Edit" : "Create" } Review</Form.Label>
+                        <Form.Label style={{ color: 'white', fontWeight: 'bold'}}>{ editing ? "Edit" : "Create" } Review</Form.Label>
                         <Form.Control
                           as="textarea"
                           type="text"
                           required
                           review={ review }
                           onChange={ onChangeReview }
-                          defaultValue={ editing ? location.state.currentReview.review : "" }
+                          defaultValue={ editing ? initialReviewState : "" }
                         />
                     </Form.Group>
-                    <Button variant="primary" onClick={ saveReview }>
+                    <Button className="link-button" onClick={ saveReview }>
                         Submit
                     </Button>
                 </Form>

@@ -1,8 +1,17 @@
 .App {
-  background-color: gray;
+  
   min-height: 100vh;
   padding-bottom: 100px;
+  background-image: url('../public/images/dog_paws_bg.jpg');
+  background-repeat: repeat; /* Set the background image to repeat */
+  background-size: 1850px; /* Adjust the size of the background image */
+
 }
+  
+  .pawBackground {
+    
+  }
+  
 
 body {
  overflow-x: hidden;
@@ -38,3 +47,10 @@ img.pawLogo {
  height: 50px;
  padding-right: 5px;
 }
+
+.largerImage img {
+  transform: scale(1.2); /* 20% larger */
+}
+
+
+

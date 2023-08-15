@@ -1,0 +1,46 @@
+.favorites-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center; 
+
+  }
+  
+  .dogsList {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: left; 
+  }
+  
+  .dogsListCard {
+    margin: 10px; 
+  }
+
+  img.luvLogo {
+    height: 50px;
+    padding-right: 5px;
+  }
+    
+  .favHeading {
+    font-family: 'Arial', sans-serif; /* Change font to Arial or any other bold font */
+    font-weight: bold;
+    color: white; 
+  }
+
+  .salmBackground {
+    background-color: lightgray;
+  }
+
+  .slategreyBg {
+    background-color: slategrey;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+  }
+  
+
+  
+  
+  
+

@@ -8,7 +8,9 @@ class DogDataService {
     }
 
     find(query, by='dog_breed', page=0) {
-        return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/dogs?${by}=${query}&page=${page}`);
+        return axios.get(
+            `${process.env.REACT_APP_API_BASE_URL}/api/v1/dogs?${by}=${query}&page=${page}`
+            );
     }
     
     getSizes() {

@@ -33,7 +33,7 @@ export default class ReviewsDAO {
         }
     }
 
-    static async updateReview(reviewId, user, review, date) {
+    static async updateReview(reviewId, userId, review, date) {
         try {
             const updateResponse = await reviews.updateOne(
                 { user_id: userId, _id: new ObjectId(reviewId) },

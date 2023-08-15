@@ -1,0 +1,15 @@
+/* RandomQuote component styles */
+.random-quote {
+    padding: 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+  }
+  
+  .random-quote p {
+    margin: 0;
+    padding: 10px;
+  }
+  

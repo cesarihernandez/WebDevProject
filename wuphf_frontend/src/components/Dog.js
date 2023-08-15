@@ -8,6 +8,10 @@ import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
 import Button from 'react-bootstrap/Button';
 import moment from 'moment';
+import Carousel from "./Carousel";
+
+
+
 
 import "./Dog.css";
 
@@ -58,83 +62,93 @@ const Dog = ({user}) => {
     return ( 
         <div>
             <Container>
+            
                 <Row>
                     <Col>
                         <div className="poster">
-                            <Image
-                                className="bigPicture"
-                                /* Remove 100x180 */
+                            <Image 
                                 src={dog.poster}                    
                                 onError={({ currentTarget }) => {
                                     currentTarget.onerror = null; // prevents looping
                                     currentTarget.src = "/images/dog-placeholder.png";
                                 }}
-                        fluid    />
+                                fluid 
+                                style={{ width: '500px', height: '500px' }} 
+                            />
                         </div>
+                        <Container> {/* Use mx-auto to center horizontally */}
+                <h2 className="reviewHeading">Dog Sizes</h2>  
+        <Carousel />
+        </Container>
+                       
                     </Col>
                     <Col>
                         <Card>
                             <Card.Header as="h5">{dog.dog_breed}</Card.Header>
-                            <Card.Body>
-                                <Card.Text>
-                                    Size: {dog.size}
-                                </Card.Text>
-                                <Card.Text>
-                                    Shedding: {dog.shedding}
-                                </Card.Text>
-                                <Card.Text>
-                                    Grooming: {dog.grooming}
-                                </Card.Text>
-                                <Card.Text>
-                                    Intelligence: {dog.intelligence}
-                                </Card.Text>
-                                <Card.Text>
-                                    Activity Level: {dog.activity_level}
-                                </Card.Text>
-                                <Card.Text>
-                                    Barking: {dog.barking}
-                                </Card.Text>
-                                <Card.Text>
-                                    Training: {dog.training}
-                                </Card.Text>
-                                <Card.Text>
-                                  Good For Beginner: {dog.good_for_beginner ? "Yes" : "No"}
-                                </Card.Text>
-                                <Card.Text>
-                                  Good With Kids: {dog.good_with_kids ? "Yes" : "No"}
-                                </Card.Text>
-                                <Card.Text>
-                                  Good With Other Dogs: {dog.good_with_dogs ? "Yes" : "No"}
-                                </Card.Text>
-
-                                { user && 
-                                    <Link to={"/dogs/"+params.id+"/review"}>
-                                        Add Review
-                                    </Link>}
+                            <Card.Body className="card-body">
+                              <Card.Text className="card-text">
+                                Size: {dog.size}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Shedding: {dog.shedding}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Grooming: {dog.grooming}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Intelligence: {dog.intelligence}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Activity Level: {dog.activity_level}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Barking: {dog.barking}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Training: {dog.training}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Good For Beginner: {dog.good_for_beginner ? "Yes" : "No"}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Good With Kids: {dog.good_with_kids ? "Yes" : "No"}
+                              </Card.Text>
+                              <Card.Text className="card-text">
+                                Good With Other Dogs: {dog.good_with_dogs ? "Yes" : "No"}
+                              </Card.Text>
+                              {user && (
+                                <Link className="link-button" to={"/dogs/"+params.id+"/review"}>
+                                  Add Review
+                                </Link>
+                              )}
                             </Card.Body>
+
                         </Card>
-                        <h2>Reviews</h2>
+                        
+                        <h2 className="reviewHeading"> Reviews</h2>
                         <br></br>
                         { dog.reviews.map((review, index) => { 
                         return ( 
                            <div className="d—flex" key={index}>
                              <div className="flex—shrink-0 reviewsText">
-                                <h5>{review.name + " reviewed on "} { moment(review.date).format("Do MMMM YYYY") }</h5>
-                                 <p className="review">{review.review}</p>
+                                <h5 className="headerReview">{review.name + " reviewed on "} { moment(review.date).format("Do MMMM YYYY") }
+                                <p className="userReview">{review.review}</p>
+                                </h5>
+                                 
                                  { user && user.googleId === review.user_id &&
                                  <Row>
                                     <Col>
-                                      <Link to={{
-                                        pathname: "/dogs/"+params.id+"/review/"
+                                      <Link className="link-button" to={{
+                                        pathname: "/dogs/" +params.id+ "/review/"
                                         }}
                                         state = {{
-                                            currentReview: review
+                                            currentReview : review
                                         }} >
                                         Edit
                                         </Link>
                                     </Col>
                                     <Col>
-                                      <Button variant="link" onClick={() => {
+                                      <Button className="link-button" variant="link" onClick={() => {
                                         deleteReview(review._id, index)
                                        }}>
                                         Delete 
@@ -144,11 +158,16 @@ const Dog = ({user}) => {
                                   }
                                 </div>
                               </div> 
+                              
                         )
                        })}
                     </Col>
              </Row>
+             <div>
+    </div>
+    
             </Container>
+            
             </div>
     )
 }

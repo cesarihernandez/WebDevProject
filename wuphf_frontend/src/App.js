@@ -11,6 +11,9 @@ import DogList from "./components/DogList";
 import Dog from "./components/Dog";
 import AddReview from "./components/AddReview";
 import FavoriteDataService from "./services/favorites";
+import FavoritesPage from './components/FavoritesPage';
+import RandomQuote from "./components/RandomQuote";
+
 
 //import logo from './logo.svg';
 import './App.css';
@@ -27,6 +30,7 @@ function App() {
       .then(response => {
         setFavorites(response.data.favorites);
       })
+      
       .catch(e => {
         console.log(e);
       });
@@ -87,12 +91,12 @@ function App() {
   return (
     <GoogleOAuthProvider clientId={clientId}> 
       <div className="App">
-      <Navbar bg="primary" expand="lg" sticky="bottom" variant="light">
+      <Navbar bg="secondary" expand="lg" sticky="bottom" variant="dark">
         <Container className="container-fluid">
           <Navbar.Brand href="/">
-            <img src="/images/dog-paw.png" alt="dog paw" className="pawLogo"/>
-          WUPHF
-          <img src="/images/dog-paw.png" alt="dog paw" className="pawLogo"/>
+            
+          <h2 className="largerImage"> <img src="/images/dog_land_2.png" alt="dog face" className="pawLogo"/> WUPHF </h2>
+          
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -100,10 +104,14 @@ function App() {
               <Nav.Link as={Link} to="/dogs">
                 Dogs
               </Nav.Link>
+              <Nav.Link href="https://www.petfinder.com/" target="_blank" rel="noopener noreferrer">
+                Adopt
+              </Nav.Link>
               <Nav.Link as={Link} to="/favorites" style={{ display: user ? 'block' : 'none' }}>
                   Favorites
-                </Nav.Link> 
+                </Nav.Link>
               </Nav>
+            <RandomQuote/>
             </Navbar.Collapse>
             { user ? (
               <Logout setUser={setUser} clientId={clientId}/>
@@ -112,6 +120,8 @@ function App() {
             )}
           </Container>
         </Navbar>
+        
+
 
       <Routes> 
         <Route exact path="/" element={
@@ -120,7 +130,9 @@ function App() {
             addFavorite={ addFavorite }
             deleteFavorite= { deleteFavorite }
             favorites= { favorites }
-            />}
+            />
+          }
+            
         />
         <Route exact path="/dogs" element={
           <DogList 
@@ -136,9 +148,10 @@ function App() {
       <Route path="/dogs/:id/review" element={
             <AddReview user={ user } />} 
           />
-         {/* <Route path="/favorites" element={ 
-            <FavoritesPage user={user} /> }
-          /> */}
+         {<Route path="/favorites" element={ 
+            <FavoritesPage
+            user={user} /> }
+          />}
         </Routes>
       </div>
       </GoogleOAuthProvider>
