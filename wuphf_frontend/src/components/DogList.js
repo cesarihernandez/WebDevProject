@@ -25,6 +25,7 @@ const DogList =({
     const [entriesPerPage, setEntriesPerPage] = useState(0);
     const [currentSearchMode, setCurrentSearchMode] =useState("");
 
+// Retrieve possible sizes for drop down.
 const retrieveSizes = useCallback(() => {
     DogDataService.getSizes()
     .then(response => {
@@ -35,9 +36,9 @@ const retrieveSizes = useCallback(() => {
     });
 }, []);
 
-
+// Retrieve list of dogs based on current search mode and page
 const retrieveDogs = useCallback(() => {
-    setCurrentSearchMode(""); //Reset our search box and then go and grab our dogs
+    setCurrentSearchMode("");
     DogDataService.getAll(currentPage) 
     .then(response => {
         setDogs(response.data.dogs);
@@ -49,6 +50,7 @@ const retrieveDogs = useCallback(() => {
     });
 }, [currentPage]);
 
+// Search dogs by given query and search parameter
 const find = useCallback((query, by) => {
     DogDataService.find(query, by, currentPage)
     .then(response => {
@@ -59,11 +61,13 @@ const find = useCallback((query, by) => {
     });
 }, [currentPage]);
 
+// Search dogs by breed
 const findByBreed = useCallback(() => {
     setCurrentSearchMode("findByBreed");
     find(searchBreed, "dog_breed");
 }, [find, searchBreed]);
 
+// Search dogs by size
 const findBySize = useCallback(() => {
     setCurrentSearchMode("findBySize");
     if (searchSize === "All Sizes") {
@@ -73,6 +77,7 @@ const findBySize = useCallback(() => {
     }
 }, [find, searchSize, retrieveDogs]);
 
+// Retrieve next page of dogs based on current search mode
 const retrieveNextPage = useCallback(() => {
     if (currentSearchMode === "findByBreed") {
         findByBreed();
@@ -83,25 +88,28 @@ const retrieveNextPage = useCallback(() => {
     }
 }, [currentSearchMode, findByBreed, findBySize, retrieveDogs]);
 
-//Use effect to carry out side effect functionality
+    // useEffect to retrieve available sizes when page loads
     useEffect(() => {
         retrieveSizes();
     }, [retrieveSizes]);
 
+    // useEffect to reset current page when search mode changes
     useEffect(() => {
         setCurrentPage(0);
     }, [currentSearchMode]);
 
+    // useEffect to retrieve dogs when current page changes
     useEffect(() => {
             retrieveNextPage();
     }, [currentPage, retrieveNextPage]);
 
-    // Other functions that are not depended on by useEffect
+    // Function to update search by breed input value
     const onChangeSearchBreed = e => {
         const searchBreed = e.target.value;
         setSearchBreed(searchBreed);
     }
 
+    // Function to update search by size dropdown value
     const onChangeSearchSize = e => {
         const searchSize = e.target.value; 
         setSearchSize(searchSize);
