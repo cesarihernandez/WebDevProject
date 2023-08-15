@@ -34,7 +34,7 @@ const RandomQuote = () => {
 
   return (
     <div className="random-quote">
-      Random Dog Quote: {randomQuote && <p style={{ fontSize: '0.95rem', fontWeight: 'bold', fontStyle: 'italic' }}>{"\"" + randomQuote + "\""}</p>}
+      {randomQuote && <p style={{ fontSize: '0.95rem', fontWeight: 'bold', fontStyle: 'italic' }}>{"\"" + randomQuote + "\""}</p>}
     </div>
   );
 };

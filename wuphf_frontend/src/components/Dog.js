@@ -76,6 +76,10 @@ const Dog = ({user}) => {
                                 style={{ width: '500px', height: '500px' }} 
                             />
                         </div>
+                        <Container> {/* Use mx-auto to center horizontally */}
+                <h2 className="reviewHeading">Dog Sizes</h2>  
+        <Carousel />
+        </Container>
                        
                     </Col>
                     <Col>
@@ -120,6 +124,7 @@ const Dog = ({user}) => {
                             </Card.Body>
 
                         </Card>
+                        
                         <h2 className="reviewHeading"> Reviews</h2>
                         <br></br>
                         { dog.reviews.map((review, index) => { 
@@ -160,10 +165,7 @@ const Dog = ({user}) => {
              </Row>
              <div>
     </div>
-    <Container> {/* Use mx-auto to center horizontally */}
-                <h2 className="reviewHeading">Get An Idea Of Dog Sizes!</h2>  
-        <Carousel />
-        </Container>
+    
             </Container>
             
             </div>
