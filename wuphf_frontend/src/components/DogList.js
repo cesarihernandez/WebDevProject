@@ -35,6 +35,12 @@ const retrieveSizes = useCallback(() => {
     });
 }, []);
 
+ const loadAllDogs = () => {
+    setCurrentSearchMode(""); // Reset our search mode
+    setCurrentPage(0); // Reset current page
+    retrieveDogs(); // Fetch all dogs
+};
+
 const retrieveDogs = useCallback(() => {
     setCurrentSearchMode(""); //Reset our seach box and then go and grab our dogs
     DogDataService.getAll(currentPage) 
@@ -93,16 +99,22 @@ const retrieveNextPage = useCallback(() => {
         setCurrentPage(0);
     }, [currentSearchMode]);
 
-    //Retrieve the next page if currentPage value changes
     useEffect(() => {
-        retrieveNextPage();
-    }, [currentPage, retrieveNextPage]);
+        if (currentSearchMode === "") {
+            retrieveNextPage();
+        }
+    }, [currentSearchMode, currentPage, retrieveNextPage]);
 
     // Other functions that are not depended on by useEffect
     const onChangeSearchBreed = e => {
-        console.log("CHANGING")
         const searchBreed = e.target.value;
         setSearchBreed(searchBreed);
+    }
+
+    const handleSearchByBreed = () => {
+        setCurrentSearchMode("findByBreed");
+        setCurrentPage(0); // Reset current page when searching
+        findByBreed();
     }
 
     return (
@@ -122,7 +134,7 @@ const retrieveNextPage = useCallback(() => {
                         <Button
                             variant="secondary"
                             type="button"
-                            onClick={findByBreed}
+                            onClick={handleSearchByBreed}
                         >
                             Search
                         </Button>
